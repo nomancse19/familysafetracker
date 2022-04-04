@@ -16,7 +16,11 @@ class AdminAuthController extends Controller
 
 
     public function check_admin_login_data(Request $request){
+        return $request->all();
+    }
 
+    public function do_direct_login(Request $request){
+        
     }
 
 

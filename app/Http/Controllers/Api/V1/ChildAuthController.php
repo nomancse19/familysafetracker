@@ -8,4 +8,17 @@ use Illuminate\Http\Request;
 class ChildAuthController extends Controller
 {
     
+    
+
+
+
+
+
+
+
+
+
+
+
+
 }
