@@ -7,5 +7,12 @@ use Illuminate\Http\Request;
 
 class ParentController extends Controller
 {
-    //
+    
+
+   
+
+
+
+
+
 }
