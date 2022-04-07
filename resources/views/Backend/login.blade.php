@@ -56,6 +56,11 @@
 <link type="text/css" href="{{ asset('/') }}public/assets/css/volt.css" rel="stylesheet">
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<style>
+    .fmxw-500 {
+  max-width: 510px !important;
+}
+</style>
 </head>
 
 <body>
