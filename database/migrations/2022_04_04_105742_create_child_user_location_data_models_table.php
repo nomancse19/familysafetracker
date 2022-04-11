@@ -19,6 +19,8 @@ class CreateChildUserLocationDataModelsTable extends Migration
             $table->string('child_user_location_lon');
             $table->integer('child_user_location_emergency_is')->nullable(); // 1=emergency 0 = not
             $table->integer('child_user_id');
+            $table->bigInteger('admin_user_id');
+            $table->integer('user_type');
             $table->dateTime('child_user_location_time');
             $table->timestamps();
         });

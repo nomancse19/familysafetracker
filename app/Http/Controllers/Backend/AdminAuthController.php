@@ -14,14 +14,11 @@ use Illuminate\Support\Facades\RateLimiter;
 class AdminAuthController extends Controller
 {
   
-
-
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    
     use ThrottlesLogins;
     protected $maxAttempts = 5;
     protected $decayMinutes = 10;
@@ -30,7 +27,6 @@ class AdminAuthController extends Controller
     {
         return 'number';
     }
-
 
     public function admin_login_page(){
         return view('Backend.login');
