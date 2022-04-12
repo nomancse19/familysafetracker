@@ -94,14 +94,7 @@ legend.scheduler-border {
                             </div>
                         @endif
                             
-                        <div class="card-body">
-                            <button class="btn btn-gray-800" id="basicAlert">Basic alert</button>
-                            <button class="btn btn-info" id="infoAlert">Info alert</button>
-                            <button class="btn btn-success" id="successAlert">Success alert</button>
-                            <button class="btn btn-danger" id="dangerAlert">Danger alert</button>
-                            <button class="btn btn-warning" id="warningAlert">Warning alert</button>
-                            <button class="btn btn-gray-200" id="questionAlert">Question</button>
-                        </div>
+
                         <form class="row g-3" action="{{ route('admin.user.save.post') }}" method="post">
                             @csrf
                             <div class="col-md-4">
@@ -203,7 +196,13 @@ legend.scheduler-border {
                             <td>{{ $all_user_list->number }}</td>
                             <td>{{ $all_user_list->name }}</td>
                             <td>{{ $all_user_list->user_type }}</td>
-                            <td></td>
+                            <td>
+                              <a href="" title="Active Image Slider"><i class="fa fa-thumbs-up btn btn-success btn-xs"></i></a>
+
+                        <a href="" title="Deactive Image Slider"><i class="fa fa-thumbs-down btn btn-danger btn-xs"></i></a>
+
+                
+                            </td>
                           
                         </tr>
                                 

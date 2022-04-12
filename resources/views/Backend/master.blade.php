@@ -440,9 +440,16 @@ footer{
         case 'info':
             toastr.info("{{ Session::get('message') }}");
             break;
-
         case 'warning':
-            toastr.warning("{{ Session::get('message') }}");
+        swalWithBootstrapButtons.fire({
+            icon: 'warning',
+            title: 'Warning alert',
+            text: "{{ Session::get('message') }}",
+            showConfirmButton: true,
+            timer: 3500,
+            footer: 'Please Contact Super Admin',
+           });
+            
             break;
 
         case 'success':
@@ -451,69 +458,21 @@ footer{
               title: 'Success alert',
               text: "{{ Session::get('message') }}",
               showConfirmButton: true,
-              timer: 2500
+              timer: 3500
           });
             break;
 
         case 'error':
-            toastr.error("{{ Session::get('message') }}");
+            swalWithBootstrapButtons.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ Session::get('message') }}",
+            showConfirmButton: true,
+            timer: 3500,
+            footer: 'Please Contact Super Admin',
+           });
             break;
     }
-
-
-
-  // SweetAlert 2
-  document.getElementById('basicAlert').addEventListener('click', function () {
-      swalWithBootstrapButtons.fire(
-          'Basic alert',
-          'You clicked the button!'
-      )
-  });
-
-  document.getElementById('infoAlert').addEventListener('click', function () {
-      swalWithBootstrapButtons.fire(
-          'Info alert',
-          'You clicked the button!',
-          'info'
-      )
-  });
-
-  document.getElementById('successAlert').addEventListener('click', function () {
-      swalWithBootstrapButtons.fire({
-          icon: 'success',
-          title: 'Success alert',
-          text: 'Your work has been saved',
-          showConfirmButton: true,
-          timer: 1500
-      })
-  });
-
-  document.getElementById('warningAlert').addEventListener('click', function () {
-      swalWithBootstrapButtons.fire(
-          'Warning alert',
-          'You clicked the button!',
-          'warning'
-      )
-  });
-
-  document.getElementById('dangerAlert').addEventListener('click', function () {
-      swalWithBootstrapButtons.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: '<a href>Why do I have this issue?</a>'
-      })
-  });
-
-  document.getElementById('questionAlert').addEventListener('click', function () {
-      swalWithBootstrapButtons.fire(
-          'The Internet?',
-          'That thing is still around?',
-          'question'
-      );
-  });
-
-
 </script>
 
 
