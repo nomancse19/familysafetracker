@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,6 +26,8 @@ class AdminUserSeeder extends Seeder
                 'is_active'=>1,
                 'user_type'=>1, //1= Admin User , 2= Parent User
                 'password'=>Hash::make('noman131905'),
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now(),
             ),
             array(
                 'number'=>'01772068908',
@@ -33,6 +36,8 @@ class AdminUserSeeder extends Seeder
                 'is_active'=>1,
                 'user_type'=>2, //1= Admin User , 2= Parent User
                 'password'=>Hash::make('noman131905'),
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now(),
             ),
         ];
 

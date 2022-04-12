@@ -5,7 +5,7 @@
 .table td, .table th {
     padding: 4px !important;
     color:black;
-  
+  border:1px solid rgb(226, 223, 223);
 
 }
 
@@ -94,20 +94,28 @@ legend.scheduler-border {
                             </div>
                         @endif
                             
-
-                        <form class="row g-3">
+                        <div class="card-body">
+                            <button class="btn btn-gray-800" id="basicAlert">Basic alert</button>
+                            <button class="btn btn-info" id="infoAlert">Info alert</button>
+                            <button class="btn btn-success" id="successAlert">Success alert</button>
+                            <button class="btn btn-danger" id="dangerAlert">Danger alert</button>
+                            <button class="btn btn-warning" id="warningAlert">Warning alert</button>
+                            <button class="btn btn-gray-200" id="questionAlert">Question</button>
+                        </div>
+                        <form class="row g-3" action="{{ route('admin.user.save.post') }}" method="post">
+                            @csrf
                             <div class="col-md-4">
                               
                               <input type="text" name="number" placeholder="Enter User Number " class="form-control form-control-sm" id="inputEmail4">
                             </div>
                             <div class="col-md-4">
 
-                              <input type="text" name="user_name" placeholder="Enter User Name" class="form-control form-control-sm" id="inputPassword4">
+                              <input type="text" name="name" placeholder="Enter User Name" class="form-control form-control-sm" id="inputPassword4">
                             </div>
                             
                             <div class="col-md-4">
                             
-                                <input type="email" class="form-control form-control-sm" placeholder="Enter User Email" id="inputCity">
+                                <input type="email" name="email" class="form-control form-control-sm" placeholder="Enter User Email" id="inputCity">
                               </div>
 
                             <div class="col-md-4">
@@ -116,11 +124,11 @@ legend.scheduler-border {
                               </div>
                             <div class="col-md-4">
 
-                                <input type="password" name="password" placeholder="Enter User Password" class="form-control form-control-sm" id="inputPassword4">
+                                <input type="password" name="password_confirmation" placeholder="Enter User Confirm Password" class="form-control form-control-sm" id="inputPassword4">
                               </div>
                               <div class="col-md-4">
                              
-                                <select name="" id="" class="form-control form-control-sm bold-option">
+                                <select name="user_type" id="" class="form-control form-control-sm bold-option">
                                     <option value="" class="bold-option">Select User Type</option>
                                     <option value="1" class="bold-option">Admin User</option>
                                     <option value="2" class="bold-option">Parent User</option>
@@ -170,7 +178,7 @@ legend.scheduler-border {
 
         <div class="card border-0 shadow">
             <div class="card-header border-bottom d-flex align-items-center justify-content-between">
-               <h4 class="fs-5 fw-bold mb-0">Team members</h4>
+               <h4 class="fs-5 fw-bold mb-0">All User List</h4>
             </div>
             <div class="card-body">
                 <table id="example" class="table table-bordered" style="width:100%">
@@ -185,22 +193,21 @@ legend.scheduler-border {
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $n=1;
+                        @endphp
+                        @foreach ($user_list as $all_user_list)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td>{{ $n++ }}</td>
+                            <td>{{ $all_user_list->created_at }}</td>
+                            <td>{{ $all_user_list->number }}</td>
+                            <td>{{ $all_user_list->name }}</td>
+                            <td>{{ $all_user_list->user_type }}</td>
+                            <td></td>
+                          
                         </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                        </tr>
+                                
+                        @endforeach
 
                     </tbody>
 

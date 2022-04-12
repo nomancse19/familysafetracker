@@ -358,17 +358,11 @@ footer{
               <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
               My Profile
             </a>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-              <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path></svg>
-              Settings
-            </a>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-              <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h10v7h-2l-1 2H8l-1-2H5V5z" clip-rule="evenodd"></path></svg>
-              Messages
-            </a>
+          
+ 
             
             <div role="separator" class="dropdown-divider my-1"></div>
-            <a class="dropdown-item d-flex align-items-center" href="#">
+            <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">
               <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>                
               Logout
             </a>
@@ -429,7 +423,101 @@ footer{
 
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+
+    var type = "{{ Session::get('alert-type') }}";
   
+  const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-gray'
+      },
+      buttonsStyling: false
+  });
+ 
+
+  switch(type){
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            swalWithBootstrapButtons.fire({
+              icon: 'success',
+              title: 'Success alert',
+              text: "{{ Session::get('message') }}",
+              showConfirmButton: true,
+              timer: 2500
+          });
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+
+
+
+  // SweetAlert 2
+  document.getElementById('basicAlert').addEventListener('click', function () {
+      swalWithBootstrapButtons.fire(
+          'Basic alert',
+          'You clicked the button!'
+      )
+  });
+
+  document.getElementById('infoAlert').addEventListener('click', function () {
+      swalWithBootstrapButtons.fire(
+          'Info alert',
+          'You clicked the button!',
+          'info'
+      )
+  });
+
+  document.getElementById('successAlert').addEventListener('click', function () {
+      swalWithBootstrapButtons.fire({
+          icon: 'success',
+          title: 'Success alert',
+          text: 'Your work has been saved',
+          showConfirmButton: true,
+          timer: 1500
+      })
+  });
+
+  document.getElementById('warningAlert').addEventListener('click', function () {
+      swalWithBootstrapButtons.fire(
+          'Warning alert',
+          'You clicked the button!',
+          'warning'
+      )
+  });
+
+  document.getElementById('dangerAlert').addEventListener('click', function () {
+      swalWithBootstrapButtons.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: '<a href>Why do I have this issue?</a>'
+      })
+  });
+
+  document.getElementById('questionAlert').addEventListener('click', function () {
+      swalWithBootstrapButtons.fire(
+          'The Internet?',
+          'That thing is still around?',
+          'question'
+      );
+  });
+
+
+</script>
+
+
+
 <script type="text/javascript">
   $(document).ready(function() {
       $('#example').DataTable();
