@@ -3,8 +3,9 @@
 <style>
 
 .table td, .table th {
-    padding: 4px;
+    padding: 4px !important;
     color:black;
+  
 
 }
 
@@ -28,15 +29,7 @@ legend.scheduler-border {
   color: black;
 }
 
-.btn{
-    padding: 4px 8px !important;
-}
-.form-control{
-    padding: .3rem 0.25rem !important;
-}
-select.form-control:not([size]):not([multiple]){
-    height: auto !important;
-}
+
 
 
 .m_error_ul .m_error_li:before {
@@ -44,49 +37,14 @@ select.form-control:not([size]):not([multiple]){
 }
 
 
-a.dt-button{
-background-color: #01a9ac;
-border-color: #01a9ac;
-border-radius: 2px;
-color: #fff;
-background-image: none;
-font-size: 11px;
-}
-
-button.dt-button:hover:not(.disabled),
-div.dt-button:hover:not(.disabled),
-a.dt-button:hover:not(.disabled) {
-    background-image: none;
-    background-color: #01c2c5;
-    border-color: #01a9ac
-}
 
 
-
-
-
-
-
-button.dt-button,
-div.dt-button,
-a.dt-button,
-button.dt-button:focus:not(.disabled),
-div.dt-button:focus:not(.disabled),
-a.dt-button:focus:not(.disabled),
-button.dt-button:active:not(.disabled),
-button.dt-button.active:not(.disabled),
-div.dt-button:active:not(.disabled),
-div.dt-button.active:not(.disabled),
-a.dt-button:active:not(.disabled),
-a.dt-button.active:not(.disabled) {
-    background-color: #01a9ac;
-    border-color: #01a9ac;
-    border-radius: 2px;
-    color: #fff;
-    font-size: 11px
-}
 
 ::-webkit-input-placeholder {
+   color: red;
+   font-weight: bold;
+}
+::-webkit-select-placeholder {
    color: red;
    font-weight: bold;
 }
@@ -105,11 +63,18 @@ a.dt-button.active:not(.disabled) {
    color: red;  
    font-weight: bold;
 }
+.bold-option{
+    font-weight: bold;
+}
+
+.card-header {
+  padding: .3rem 1.6rem !important;
+}
 </style>
 
     
 <div class="row">
-    <div class="col-12 col-xxl-6 mb-4">
+    <div class="col-12">
         <div class="card border-0 shadow">
             <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                
@@ -128,66 +93,126 @@ a.dt-button.active:not(.disabled) {
                                 </ul>
                             </div>
                         @endif
-                    <form id="main" method="post" action="" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group row">
-                
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" autocomplete="off" name="name" id="name" placeholder="Enter System User Name (***)">
+                            
+
+                        <form class="row g-3">
+                            <div class="col-md-4">
+                              
+                              <input type="text" name="number" placeholder="Enter User Number " class="form-control form-control-sm" id="inputEmail4">
                             </div>
-        
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" autocomplete="off" name="number" id="number" placeholder="Enter System User Number (***)">
+                            <div class="col-md-4">
+
+                              <input type="text" name="user_name" placeholder="Enter User Name" class="form-control form-control-sm" id="inputPassword4">
                             </div>
-        
-                            <div class="col-sm-3">
-                                <input type="text" class="form-control" autocomplete="off" name="email" id="email" placeholder="Enter System User Email (Optional)">
-                            </div>
-                            <div class="col-sm-3">
-                                <div style="padding:4px;">
-                                    &nbsp;
-                                    <input type="radio" id="html" checked name="is_2fa_verify" style="color:Blue;Font-weight:bold;" value="0">
-                                    <span for="Yes" class="custom_radio" style="color:Blue;Font-weight:bold;">2FA Verify On</span>&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" id="css" name="is_2fa_verify" style="color:red;Font-weight:bold;" value="1">
-                                    <span for="No" class="custom_radio" style="color:red;Font-weight:bold;" >2FA Verify Off</span><br>
-                                </div>
-                            </div>
-                
-                
-                        </div>
-        
-                        <div class="form-group row">
-                            <div class="col-sm-3">
-                                <input type="password" class="form-control" autocomplete="off" name="password" id="password" placeholder="Enter System User Password (***)">
-                            </div>
-        
-                            <div class="col-sm-3">
-                                <input type="password" class="form-control" autocomplete="off" name="password_confirmation" id="password_confirmation" placeholder="Confirm User Password (***)">
-                            </div>
-        
-                            <div class="col-sm-3">
-                               <select name="user_type" id="user_type" class="form-control">
-                                   <option value="">Select User Type </option>
-                                   <option value="0">Admin User</option>
-                                   <option value="2">Forward User </option>
-                                   <option value="1">Call Center User</option>
-                               </select>
-                            </div>
+                            
+                            <div class="col-md-4">
+                            
+                                <input type="email" class="form-control form-control-sm" placeholder="Enter User Email" id="inputCity">
+                              </div>
+
+                            <div class="col-md-4">
+
+                                <input type="password" name="password" placeholder="Enter User Password" class="form-control form-control-sm" id="inputPassword4">
+                              </div>
+                            <div class="col-md-4">
+
+                                <input type="password" name="password" placeholder="Enter User Password" class="form-control form-control-sm" id="inputPassword4">
+                              </div>
+                              <div class="col-md-4">
+                             
+                                <select name="" id="" class="form-control form-control-sm bold-option">
+                                    <option value="" class="bold-option">Select User Type</option>
+                                    <option value="1" class="bold-option">Admin User</option>
+                                    <option value="2" class="bold-option">Parent User</option>
+                                </select>
+                              </div>
+                            
+                            
                            
-                        <div class="col-sm-3">
-                            <button type="submit" class="btn btn-success">Save System User</button>
-                        </div>
-                        </div>
-                    </form>
+  
+                            <div class="col-5">
+                              
+                            </div>
+                            <div class="col-7">
+                              <button type="submit" class="btn btn-success">Add New User</button>
+                            </div>
+                            &nbsp;  &nbsp;
+                          </form>
+
+
                 </fieldset>
             </div>
+
+
+
+
+            
+
+
+
             </div>
+
+
+
+
             
 
 
 
             </div>
         </div>
+
+
+
+        &nbsp;
+
+
+
+        <div class="card border-0 shadow">
+            <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+               <h4 class="fs-5 fw-bold mb-0">Team members</h4>
+            </div>
+            <div class="card-body">
+                <table id="example" class="table table-bordered" style="width:100%">
+                    <thead style="background:#c8c8c8;">
+                        <tr>
+                            <th>SL</th>
+                            <th>Date</th>
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th>User Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tiger Nixon</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td>2011/04/25</td>
+                            <td>$320,800</td>
+                        </tr>
+                        <tr>
+                            <td>Garrett Winters</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>63</td>
+                            <td>2011/07/25</td>
+                            <td>$170,750</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            
+            </div>
+
+        </div>
+
+
+
+
     </div>
 
 </div>
