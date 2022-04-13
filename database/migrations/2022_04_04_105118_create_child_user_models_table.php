@@ -20,6 +20,7 @@ class CreateChildUserModelsTable extends Migration
             $table->string('child_user_gender')->nullable();
             $table->string('child_user_email')->nullable();
             $table->bigInteger('user_id'); // Parent ID
+            $table->string('user_number'); // Parent ID
             $table->string('child_user_created_user_id')->nullable();
             $table->dateTime('child_user_created_time');
             $table->integer('child_user_is_active')->default(1); //1= active and 0= deactive

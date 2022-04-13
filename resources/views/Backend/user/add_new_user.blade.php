@@ -195,7 +195,13 @@ legend.scheduler-border {
                             <td>{{ $all_user_list->created_at }}</td>
                             <td>{{ $all_user_list->number }}</td>
                             <td>{{ $all_user_list->name }}</td>
-                            <td>{{ $all_user_list->user_type }}</td>
+                            <td>
+                              @if ($all_user_list->user_type==1)
+                              <label class="badge bg-success">Admin User</label>
+                              @else
+                              <label class="badge bg-info">Parent User</label>
+                              @endif
+                            </td>
                             <td>
                               <a href="" title="Active Image Slider"><i class="fa fa-thumbs-up btn btn-success btn-xs"></i></a>
 
