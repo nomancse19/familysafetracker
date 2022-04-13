@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\ChildAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('User/Login',[ChildAuthController::class,'login']);
+Route::post('User/SendOTP',[ChildAuthController::class,'send_user_otp']);
+
