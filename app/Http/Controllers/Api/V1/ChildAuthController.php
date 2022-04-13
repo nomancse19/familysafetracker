@@ -43,7 +43,7 @@ class ChildAuthController extends Controller
         $empty_user_check=  ChildUserModel::where('child_user_number',$request->child_user_number)->first();  
         if($empty_user_check!=null){
             $OTP=mt_rand(1111,9999);
-            $number= $request->number;
+            $number= $request->child_user_number;
             $otp_code=$OTP;
             $msg="Your Family Safe Tracker OTP Code:  ".$otp_code.". It Will Expire in 5 Minutes.";
             $sms_sent= $this->Send_Sms_GW($number,$msg);
@@ -85,7 +85,7 @@ class ChildAuthController extends Controller
 public function login(Request $request)
 {   
     $user = ChildUserModel::where('child_user_number', $request->child_user_number)->first();
-    
+    if($user!==null){
    /* $previous_token_data= DB::table('personal_access_tokens')
                         ->where('tokenable_id',$user->victim_user_id)
                         ->get();*/
@@ -102,6 +102,16 @@ public function login(Request $request)
                 'token_type' => 'Bearer',
                 'status_code' => 200,
             ]);
+
+        }else{
+            return response()->json(
+                [   'status'=>false,
+                    'active_status'=>false,
+                    'message' => 'User Not Registered Or User ID Is Deactive',
+                    'data'=>null,
+                    'status_code' => 200,
+                ]);
+        }
 }
 
 

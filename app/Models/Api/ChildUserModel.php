@@ -19,7 +19,7 @@ class ChildUserModel extends Model
         'child_user_email','user_id','user_number','child_user_created_user_id',
         'child_user_created_time','child_user_is_active','child_user_device_id',
         'child_user_apps_login_active','child_user_apps_location_status',
-        'child_user_apps_net_status'
+        'child_user_apps_net_status','child_user_location_api_status'
     ];
 
 

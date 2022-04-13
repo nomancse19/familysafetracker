@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\V1\ChildAuthController;
+use App\Http\Controllers\Api\V1\ChildUserLocationController;
+use App\Models\Api\ChildUserLocationDataModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('User/Login',[ChildAuthController::class,'login']);
 Route::post('User/SendOTP',[ChildAuthController::class,'send_user_otp']);
+
+Route::post('User/SendUserLocation',[ChildUserLocationController::class,'send_user_location_data'])->middleware('auth:sanctum');
 

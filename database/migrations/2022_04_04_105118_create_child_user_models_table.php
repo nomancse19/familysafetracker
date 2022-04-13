@@ -25,6 +25,7 @@ class CreateChildUserModelsTable extends Migration
             $table->dateTime('child_user_created_time');
             $table->integer('child_user_is_active')->default(1); //1= active and 0= deactive
             $table->text('child_user_device_id')->nullable(); 
+            $table->string('child_user_location_api_status')->default('on'); 
             $table->integer('child_user_apps_login_active')->nullable(); //1= active and 0= deactive
             $table->integer('child_user_apps_location_status')->nullable(); //1= active and 0= deactive
             $table->integer('child_user_apps_net_status')->nullable(); //1= active and 0= deactive

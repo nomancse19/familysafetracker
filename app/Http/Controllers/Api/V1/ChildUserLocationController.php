@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Api\ChildUserLocationDataModel;
 use App\Models\Api\ChildUserModel;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -35,6 +36,7 @@ class ChildUserLocationController extends Controller
         $child_user_location_data['child_user_location_lon']    = $request->child_user_location_lon;
         $child_user_location_data['child_user_id']              = $request->child_user_id;
         $child_user_check=  ChildUserModel::where('child_user_id',$request->child_user_id)->first();  
+       
         if($child_user_check==''){
             return response()->json(
                 [   'status'=>false,
@@ -44,11 +46,42 @@ class ChildUserLocationController extends Controller
                 ]);
             exit();
         }
+
+
+        if($child_user_check->child_user_location_api_status=='on'){
+
+            $parent_user_get=  User::where('user_id',$child_user_check->user_id)->first();  
+            $child_user_location_data['admin_user_id']                      = $child_user_check->user_id;
+            $child_user_location_data['user_type']                          = $parent_user_get->user_type;
+            $child_user_location_data['child_user_location_emergency_is']   = $request->child_user_location_emergency_is;
+            $child_user_location_data['child_user_location_time']           = Carbon::now();
     
-        $child_user_location_data['admin_user_id']                      = $child_user_check->user_id;
-        $child_user_location_data['user_type']                          = $child_user_check->user_type;
-        $child_user_location_data['child_user_location_emergency_is']   = $request->child_user_location_emergency_is;
-        $child_user_location_data['child_user_location_time']           = Carbon::now();
+           $child_user_location_id= ChildUserLocationDataModel::create(
+                 $child_user_location_data
+               )->child_user_location_id;
+    
+           
+           $location_data= ChildUserLocationDataModel::where('child_user_location_id',$child_user_location_id)->first();
+           return response()->json(
+            [   'status'=>true,
+                'message' => 'User Location Data Store In Database..',
+                'data'=>$location_data,
+                'status_code' => 200,
+            ]);
+
+    
+        }else{
+            return response()->json(
+                [   'status'=>false,
+                    'message' => 'Child User Location Send API status Is OFF..',
+                    'data'=>null,
+                    'status_code' => 200,
+                ]);
+        }
+
+
+
+
 
     }
 
