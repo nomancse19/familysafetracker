@@ -14,9 +14,6 @@ class ChildAuthController extends Controller
     
     use SmsServerTraits;
 
-    public function check_child_assign_family_member(Request $request){
-
-    }
 
     public function test_sms(Request $request){
         $number=$request->number;
@@ -26,7 +23,7 @@ class ChildAuthController extends Controller
 
     public function send_user_otp(Request $request){
         $validator = Validator::make($request->all(),[
-            'child_user_number' => 'required|numeric',
+            'child_user_number' => 'required',
         ]);
 
         if($validator->fails()){
@@ -42,6 +39,19 @@ class ChildAuthController extends Controller
                   
         $empty_user_check=  ChildUserModel::where('child_user_number',$request->child_user_number)->first();  
         if($empty_user_check!=null){
+
+            if($empty_user_check->child_user_is_active==0){
+                return response()->json(
+                    [   'status'=>false,
+                        'active_status'=>false,
+                        'message' => 'Child User Is Deactivated...',
+                        'data'=>null,
+                        'status_code' => 200,
+                    ]);
+                    exit();
+            }
+
+
             $OTP=mt_rand(1111,9999);
             $number= $request->child_user_number;
             $otp_code=$OTP;
@@ -68,7 +78,7 @@ class ChildAuthController extends Controller
             return response()->json(
                 [   'status'=>false,
                     'active_status'=>false,
-                    'message' => 'User Not Registered Or User ID Is Deactive',
+                    'message' => 'User Not Registered Please Contact Your Parent',
                     'data'=>null,
                     'status_code' => 200,
                 ]);

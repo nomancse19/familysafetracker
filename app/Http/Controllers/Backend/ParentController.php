@@ -34,7 +34,7 @@ class ParentController extends Controller
         $request->validate(
             [
                 'child_user_name'=>'required',
-                'child_user_number'=>'required|size:11',
+                'child_user_number'=>'required|size:14',
             ]
         );
         $check_user_number_exist= ChildUserModel::where('child_user_number',$request->child_user_number)->first();
