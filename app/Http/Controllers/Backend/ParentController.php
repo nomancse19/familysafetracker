@@ -100,6 +100,14 @@ class ParentController extends Controller
         return view('Backend.childuser.manage_child_user_location',compact($share));
     }
 
+
+
+    public function view_child_live_location(Request $request){
+        $child_user_location_id=$request->child_user_location_id;
+        $location_data= ChildUserLocationDataModel::where('child_user_location_id',$child_user_location_id)->first();
+        $share=array_keys(get_defined_vars());
+        return view('Backend.childuser.child_user_live_location_view',compact($share));
+    }
     
 
 

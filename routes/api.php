@@ -26,4 +26,5 @@ Route::post('User/Login',[ChildAuthController::class,'login']);
 Route::post('User/SendOTP',[ChildAuthController::class,'send_user_otp']);
 
 Route::post('User/SendUserLocation',[ChildUserLocationController::class,'send_user_location_data'])->middleware('auth:sanctum');
+Route::post('User/SendEmergencyUserLocation',[ChildUserLocationController::class,'send_emergency_user_location_data'])->middleware('auth:sanctum');
 

@@ -1,5 +1,5 @@
-@extends('Backend.master')
-@section('data')
+
+<?php $__env->startSection('data'); ?>
 <style>
 
 .table td, .table th {
@@ -79,15 +79,15 @@ legend.scheduler-border {
         <div class="card border-0 shadow">
             <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                <h4 class="fs-5 fw-bold mb-0">Child User Location</h4>
-               @if ($errors->any())
+               <?php if($errors->any()): ?>
                <div class="alert alert-danger">
                    <ul class="m_error_ul">
-                       @foreach ($errors->all() as $error)
-                           <li class="m_error_li" style="color:red;font-weight:bold;">{{ $error }}</li>
-                       @endforeach
+                       <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                           <li class="m_error_li" style="color:red;font-weight:bold;"><?php echo e($error); ?></li>
+                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                    </ul>
                </div>
-            @endif
+            <?php endif; ?>
             </div>
             <div class="card-body">
                 <table id="example" class="table table-bordered" style="width:100%">
@@ -104,31 +104,32 @@ legend.scheduler-border {
                         </tr>
                     </thead>
                     <tbody>
-                        @php
+                        <?php
                             $n=1;
-                        @endphp
-                        @foreach ($user_location as $all_user_location)
+                        ?>
+                        <?php $__currentLoopData = $user_location; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $all_user_location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td>{{ $n++ }}</td>
-                            <td>{{ $all_user_location->child_user_location_time }}</td>
+                            <td><?php echo e($n++); ?></td>
+                            <td><?php echo e($all_user_location->child_user_location_time); ?></td>
                             <td>
-                                {{ $all_user_location->child_user_number }}  
+                                <?php echo e($all_user_location->child_user_number); ?>  
                             </td>
-                            <td>{{ $all_user_location->child_user_location_lat }}</td>
-                            <td>{{ $all_user_location->child_user_location_lon }}</td>
+                            <td><?php echo e($all_user_location->child_user_location_lat); ?></td>
+                            <td><?php echo e($all_user_location->child_user_location_lon); ?></td>
                             <td>
-                                {{ $all_user_location->number }}
+                                <?php echo e($all_user_location->number); ?>
+
                             </td>
                             <td>
-                                @if ($all_user_location->child_user_location_emergency_is==1)
+                                <?php if($all_user_location->child_user_location_emergency_is==1): ?>
                                     <label for="" class="badge bg-danger">Emergency Help Needed</label>
-                                @elseif ($all_user_location->child_user_location_emergency_is=='')  
+                                <?php elseif($all_user_location->child_user_location_emergency_is==''): ?>  
                                 <label for="" class="badge bg-info">No Need Emergency</label> 
-                                @endif
+                                <?php endif; ?>
                             </td>
                             
                             <td>
-                              <a href="{{ route('parent.child.live.location',['child_user_location_id'=>$all_user_location->child_user_location_id]) }}" title="Show Live Location" class="badge bg-success">Show Live Location</a>
+                              <a href="<?php echo e(route('parent.child.live.location',['child_user_location_id'=>$all_user_location->child_user_location_id])); ?>" title="Show Live Location" class="badge bg-success">Show Live Location</a>
 
 
                 
@@ -136,7 +137,7 @@ legend.scheduler-border {
                           
                         </tr>
                                 
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </tbody>
 
@@ -169,4 +170,5 @@ legend.scheduler-border {
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('Backend.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH G:\wamp64\www\familysafetracker\resources\views/Backend/childuser/manage_child_user_location.blade.php ENDPATH**/ ?>
