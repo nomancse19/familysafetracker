@@ -23,6 +23,8 @@ Route::get('Backend/Dashboard',[HomeController::class,'dashboard'])->name('admin
 Route::prefix("Backend")->group(function(){
 Route::get('Parent/ManageChildUser',[ParentController::class,'add_new_child_user'])->name('parent.child.add.form');
 Route::post('Parent/SaveChildUser',[ParentController::class,'save_new_child_user'])->name('parent.child.save.post');
+
+Route::get('Parent/ManageUserLocation',[ParentController::class,'manage_child_user_location'])->name('parent.manage.child.location');
 });
 
 

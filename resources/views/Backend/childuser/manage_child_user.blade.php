@@ -99,7 +99,7 @@ legend.scheduler-border {
                             @csrf
                             <div class="col-md-4">
                               
-                              <input type="text" name="child_user_number" placeholder="Enter Child Number " class="form-control form-control-sm" id="inputEmail4">
+                              <input type="text" name="child_user_number" value="+880" placeholder="Enter Child Number " class="form-control form-control-sm" id="inputEmail4">
                             </div>
                             <div class="col-md-4">
 
@@ -182,7 +182,14 @@ legend.scheduler-border {
                             <td>{{ $all_user_list->created_at }}</td>
                             <td>{{ $all_user_list->child_user_number }}</td>
                             <td>{{ $all_user_list->child_user_name }}</td>
-                            <td>{{ $all_user_list->user_number }}</td>
+                            <td>
+                              @if ($all_user_list->user_id==1)
+                              {{ $all_user_list->user_number }} <label class="badge bg-success">Admin User</label>
+                              @elseif($all_user_list->user_id==2)
+                              {{ $all_user_list->user_number }} <label class="badge bg-info">Parent User</label>
+                              @endif
+                             
+                            </td>
                             
                             <td>
                               <a href="" title="Active Image Slider"><i class="fa fa-thumbs-up btn btn-success btn-xs"></i></a>

@@ -195,7 +195,13 @@ legend.scheduler-border {
                             <td><?php echo e($all_user_list->created_at); ?></td>
                             <td><?php echo e($all_user_list->number); ?></td>
                             <td><?php echo e($all_user_list->name); ?></td>
-                            <td><?php echo e($all_user_list->user_type); ?></td>
+                            <td>
+                              <?php if($all_user_list->user_type==1): ?>
+                              <label class="badge bg-success">Admin User</label>
+                              <?php else: ?>
+                              <label class="badge bg-info">Parent User</label>
+                              <?php endif; ?>
+                            </td>
                             <td>
                               <a href="" title="Active Image Slider"><i class="fa fa-thumbs-up btn btn-success btn-xs"></i></a>
 

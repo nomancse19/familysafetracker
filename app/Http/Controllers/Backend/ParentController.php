@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Api\ChildUserLocationDataModel;
 use App\Models\Api\ChildUserModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ParentController extends Controller
@@ -22,7 +24,12 @@ class ParentController extends Controller
     public function add_new_child_user(){
         $user_number= Session::get('user_number');
         $user_type= Session::get('user_type');
+        if($user_type==2){
         $user_list= ChildUserModel::where('user_number',$user_number)->orderBy('child_user_id','DESC')->get();
+        }
+        else if($user_type==1){
+            $user_list= ChildUserModel::all()->sortByDesc("child_user_id");
+        }
         $share= array_keys(get_defined_vars());
         return view('Backend.childuser.manage_child_user',compact($share));
     }
@@ -60,6 +67,37 @@ class ParentController extends Controller
         }
     
 
+    }
+
+
+
+
+    public function manage_child_user_location(){
+        $user_number= Session::get('user_number');
+        $user_type= Session::get('user_type');
+        $user_id= Auth::id();
+        $data=array();
+         if($user_id==1){
+           // $user_location= ChildUserLocationDataModel::all()->sortByDesc("child_user_location_id");
+            $user_location = DB::table('child_user_location_data')
+            ->leftjoin('child_user', 'child_user.child_user_id', '=', 'child_user_location_data.child_user_id')
+            ->leftjoin('users', 'users.user_id', '=', 'child_user_location_data.admin_user_id')
+            ->orderBy('child_user_location_data.child_user_location_id','DESC')
+            ->get();
+        }
+         else if($user_id==2){
+           // $user_location= ChildUserLocationDataModel::where('admin_user_id',$user_id)->orderBy('child_user_location_id','DESC')->get();
+            $user_location = DB::table('child_user_location_data')
+            ->leftjoin('child_user', 'child_user.child_user_id', '=', 'child_user_location_data.child_user_id')
+            ->leftjoin('users', 'users.user_id', '=', 'child_user_location_data.admin_user_id')
+            ->where('child_user_location_data.admin_user_id',$user_id)
+            ->orderBy('child_user_location_data.child_user_location_id','DESC')
+            ->get();
+         }
+        
+       
+        $share= array_keys(get_defined_vars());
+        return view('Backend.childuser.manage_child_user_location',compact($share));
     }
 
     

@@ -149,6 +149,8 @@ footer{
         <div class="multi-level collapse
         @if (Request::path()=='Backend/Parent/ManageChildUser')
         show
+        @elseif (Request::path()=='Backend/Parent/ManageUserLocation')
+        show
         @else
         
       @endif  
@@ -160,6 +162,11 @@ footer{
                 <span class="sidebar-text"><i class="fa fa-arrow-right"></i> Manage Child Account</span>
               </a>
             </li>
+            <li class="nav-item {{ (Request::path()=='Backend/Parent/ManageUserLocation')? 'active' : '' }}">
+              <a class="nav-link" href="{{ route('parent.manage.child.location') }}">
+                <span class="sidebar-text"><i class="fa fa-arrow-right"></i> Manage Child Location</span>
+              </a>
+            </li>
           </ul>
         </div>
       </li>
@@ -167,8 +174,7 @@ footer{
 
 
 
-
-  
+  @if (Session::get('user_type')==1)
       <li class="nav-item">
         <span
           class="nav-link  collapsed  d-flex justify-content-between align-items-center"
@@ -204,7 +210,7 @@ footer{
 
 
       </li>
-
+@endif
 
 
       <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>

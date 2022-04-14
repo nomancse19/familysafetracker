@@ -13,11 +13,15 @@ class ChildUserLocationDataModel extends Model
     protected $table="child_user_location_data";
     protected $primaryKey="child_user_location_id";
 
+    
     protected $fillable=[
         'child_user_location_lat','child_user_location_lon',
         'child_user_location_emergency_is','child_user_id',
         'admin_user_id','user_type','child_user_location_time',
     ];
+
+
+
 
 
 }
