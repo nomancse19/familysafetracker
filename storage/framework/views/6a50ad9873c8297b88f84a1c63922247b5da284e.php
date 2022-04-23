@@ -121,7 +121,7 @@ legend.scheduler-border {
 
                             </td>
                             <td>
-                                <?php if($all_user_location->child_user_location_emergency_is=='on'): ?>
+                                <?php if($all_user_location->child_user_location_emergency_is==1): ?>
                                     <label for="" class="badge bg-danger">Emergency Help Needed</label>
                                 <?php elseif($all_user_location->child_user_location_emergency_is==''): ?>  
                                 <label for="" class="badge bg-info">No Need Emergency</label> 
@@ -129,9 +129,8 @@ legend.scheduler-border {
                             </td>
                             
                             <td>
-                              <a href="" title="Active Image Slider"><i class="fa fa-thumbs-up btn btn-success btn-xs"></i></a>
+                              <a href="<?php echo e(route('parent.child.live.location',['child_user_location_id'=>$all_user_location->child_user_location_id])); ?>" title="Show Live Location" class="badge bg-success">Show Live Location</a>
 
-                        <a href="" title="Deactive Image Slider"><i class="fa fa-thumbs-down btn btn-danger btn-xs"></i></a>
 
                 
                             </td>
