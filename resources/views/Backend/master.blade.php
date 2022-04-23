@@ -50,7 +50,7 @@
 
 <!-- Volt CSS -->
 <link type="text/css" href="{{ asset('/') }}public/assets/css/volt.css" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 <style>
@@ -436,6 +436,12 @@ footer{
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript">
+  $(document).ready(function() {
+      $('#example').DataTable();
+  } );
+  </script>  
+
+<script type="text/javascript">
 
     var type = "{{ Session::get('alert-type') }}";
   
@@ -489,11 +495,7 @@ footer{
 
 
 
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('#example').DataTable();
-  } );
-  </script>  
+
 
 </body>
 
